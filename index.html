@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>文字数カウント＆連結ツール</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 30px auto; }
+    textarea { width: 100%; height: 100px; margin-bottom: 10px; }
+    button { padding: 8px 16px; margin: 5px 0; }
+    .result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background: #f8f8f8; }
+  </style>
+</head>
+<body>
+  <h1>文字数カウント & 文章連結</h1>
+  
+  <textarea id="input1" placeholder="ここに文章1を入力"></textarea>
+  <textarea id="input2" placeholder="ここに文章2を入力"></textarea>
+  
+  <button onclick="countChars()">文字数を数える</button>
+  <button onclick="concatText()">文章を連結</button>
+  
+  <div class="result" id="output"></div>
+  
+  <script>
+    function countChars() {
+      const text1 = document.getElementById('input1').value;
+      const text2 = document.getElementById('input2').value;
+      const len1 = text1.length;
+      const len2 = text2.length;
+      document.getElementById('output').innerText = 
+        `文章1: ${len1}文字\n文章2: ${len2}文字\n合計: ${len1 + len2}文字`;
+    }
+
+    function concatText() {
+      const text1 = document.getElementById('input1').value;
+      const text2 = document.getElementById('input2').value;
+      document.getElementById('output').innerText = 
+        `連結結果:\n${text1}${text2}`;
+    }
+  </script>
+</body>
+</html>
