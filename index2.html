@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>結論・理由・具体例・結論再主張 ツール</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 30px auto; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    textarea { width: 100%; height: 80px; margin-top: 5px; font-size: 14px; }
+    button { padding: 8px 16px; margin: 10px 10px 10px 0; }
+    .result { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background: #f8f8f8; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>文字数カウント & 文章連結</h1>
+
+  <label>結論：</label>
+  <textarea id="conclusion" placeholder="ここに結論を入力"></textarea>
+
+  <label>理由：</label>
+  <textarea id="reason" placeholder="ここに理由を入力"></textarea>
+
+  <label>具体例：</label>
+  <textarea id="example" placeholder="ここに具体例を入力"></textarea>
+
+  <label>結論（再主張）：</label>
+  <textarea id="reconclusion" placeholder="ここに結論再主張を入力"></textarea>
+
+  <button onclick="countAll()">文字数をカウント</button>
+  <button onclick="joinAll()">文章を連結</button>
+
+  <div class="result" id="output">ここに結果が表示されます</div>
+
+  <script>
+    function countAll() {
+      const text1 = document.getElementById('conclusion').value || "";
+      const text2 = document.getElementById('reason').value || "";
+      const text3 = document.getElementById('example').value || "";
+      const text4 = document.getElementById('reconclusion').value || "";
+
+      const len1 = text1.length;
+      const len2 = text2.length;
+      const len3 = text3.length;
+      const len4 = text4.length;
+      const total = len1 + len2 + len3 + len4;
+
+      const resultText =
+        `結論：${len1}文字\n` +
+        `理由：${len2}文字\n` +
+        `具体例：${len3}文字\n` +
+        `結論（再主張）：${len4}文字\n` +
+        `------------------------\n` +
+        `合計：${total}文字`;
+
+      document.getElementById('output').innerText = resultText;
+    }
+
+    function joinAll() {
+      const text1 = document.getElementById('conclusion').value || "";
+      const text2 = document.getElementById('reason').value || "";
+      const text3 = document.getElementById('example').value || "";
+      const text4 = document.getElementById('reconclusion').value || "";
+
+      const joinedText = [text1, text2, text3, text4]
+        .filter(t => t.trim() !== "")
+        .join("\n\n");
+
+      document.getElementById('output').innerText = 
+        joinedText === "" ? "文章が入力されていません" : joinedText;
+    }
+  </script>
+</body>
+</html>
